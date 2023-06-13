@@ -1,39 +1,49 @@
-import resolve from "@rollup/plugin-node-resolve";
-import commonjs from "@rollup/plugin-commonjs";
-import typescript from "@rollup/plugin-typescript";
-import dts from "rollup-plugin-dts";
-import { terser } from "rollup-plugin-terser";
-import peerDepsExternal from "rollup-plugin-peer-deps-external";
+import styles from "rollup-plugin-styles";
+import autoprefixer from "autoprefixer";
+import babel from "@rollup/plugin-babel";
 
-const packageJson = require("./package.json");
+const input = "src/index.js";
 
-export default [
+const MODE = [
   {
-    input: "src/index.ts",
-    output: [
-      {
-        file: packageJson.main,
-        format: "cjs",
-        sourcemap: true,
-      },
-      {
-        file: packageJson.module,
-        format: "esm",
-        sourcemap: true,
-      },
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: "./tsconfig.json" }),
-      terser(),
-    ],
-    external: ["react", "react-dom", "styled-components"],
+    format: "cjs",
   },
   {
-    input: "src/index.ts",
-    output: [{ file: "dist/types.d.ts", format: "es" }],
-    plugins: [dts.default()],
+    format: "esm",
+  },
+  {
+    format: "umd",
   },
 ];
+
+const config = MODE.map((m) => ({
+  input: input,
+  output: {
+    name: "react-awesome-buttons",
+    file: `dist/index.${m.format}.js`,
+    format: m.format,
+    exports: "auto",
+    sourcemap: true,
+    globals: {
+      "@babel/runtime/helpers/slicedToArray": "_slicedToArray",
+      react: "React",
+    },
+  },
+  external: ["react", /@babel\/runtime/],
+  plugins: [
+    babel({
+      exclude: "node_modules/**",
+      plugins: ["@babel/transform-runtime"],
+      babelHelpers: "runtime",
+    }),
+    styles({
+      postcss: {
+        plugins: [
+          autoprefixer(),
+        ],
+      },
+    }),
+  ],
+}));
+
+export default config;

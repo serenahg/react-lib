@@ -1,0 +1,16 @@
+.buttonComponent {
+    color:#ffffffb0;
+    border-radius: 8px;
+    padding: 0.3rem 0.5rem;
+    margin:5px;
+cursor: pointer;
+border: none;
+    transition: all .5s ease-out;
+    box-shadow: #b9b9b9b0 3px 3px 3px;
+}
+.buttonComponent:hover {
+    box-shadow: #272727b0 1px 1px 3px;
+}
+.buttonComponent:active {
+    opacity: .8;
+}

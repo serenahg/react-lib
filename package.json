@@ -1,28 +1,32 @@
 {
-  "name": "react-lib",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "types": "dist/index.d.ts",
-  "version": "1.0.0",
-  "description": "react components library",
+  "name": "react-lib-hg",
+  "version": "1.0.8",
+  "description": "react component library for hg",
+  "main": "dist/index.cjs.js",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs"
+
   },
-  "author": "serena",
+  "keywords": [],
+  "author": "Serena",
   "license": "ISC",
   "devDependencies": {
-    "@rollup/plugin-commonjs": "^25.0.1",
-    "@rollup/plugin-node-resolve": "^15.1.0",
-    "@rollup/plugin-typescript": "^11.1.1",
-    "@types/react": "^18.2.12",
-    "@types/styled-components": "^5.1.26",
+    "@babel/cli": "^7.22.5",
+    "@babel/core": "^7.22.5",
+    "@babel/plugin-transform-runtime": "^7.22.5",
+    "@babel/preset-env": "^7.22.5",
+    "@babel/preset-react": "^7.22.5",
+    "@rollup/plugin-babel": "^6.0.3",
+    "autoprefixer": "^10.4.14",
     "rollup": "^3.25.1",
-    "rollup-plugin-dts": "^5.3.0",
-    "rollup-plugin-peer-deps-external": "^2.2.4",
-    "rollup-plugin-terser": "^7.0.2"
+    "rollup-plugin-sourcemaps": "^0.6.3",
+    "rollup-plugin-styles": "^4.0.0",
+    "typescript": "^5.1.3"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "tslib": "^2.5.3"
+    "@babel/runtime": "^7.22.5"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0"
   }
 }
