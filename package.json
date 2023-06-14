@@ -1,12 +1,13 @@
 {
   "name": "react-lib-hg",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "description": "react component library for hg",
   "main": "dist/index.cjs.js",
   "scripts": {
     "build": "rollup -c --bundleConfigAsCjs"
 
   },
+  "types": "react-lib-hg.d.ts",
   "keywords": [],
   "author": "Serena",
   "license": "ISC",
